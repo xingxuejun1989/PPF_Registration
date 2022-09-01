@@ -1,35 +1,35 @@
-# 指定最低的CMAKE版本
+# Specify the minimun camke version
 CMAKE_MINIMUM_REQUIRED(VERSION 3.10 FATAL_ERROR)
 
-# 创建项目
+# Create a project.
 PROJECT(PPF)
 
-#启动对C++14标准的支持
+#Start support for the C++ standard
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
-# 显式要求指明支持C++标准
+# The explicit requirement indicates that the C++ standard is supported.
 SET(CMAKE_CXX_STANDARD 14)
-# 启动对C14标准的支持
+# 
 SET(CMAKE_C_STANDARD 14)
-# 显式要求指明支持C标准
+# The explicit requirement indicates that the C standard is supported,
 SET(CMAKE_C_STANDARD_REQUIRED ON)
 
 
-# 查找第三方依赖库
+# Find third-party dependent libraries.
 FIND_PACKAGE(PCL 1.12 REQUIRED)
 
-# 添加可执行文件
+# Add an executable file.
 ADD_EXECUTABLE(PPF src/main.cpp)
 
-# 添加头文件目录
+# Add header file directory
 TARGET_INCLUDE_DIRECTORIES(PPF PRIVATE ${PCL_INCLUDE_DIRS})
 
-# 添加库目录
+# Add library directory
 TARGET_LINK_DIRECTORIES(PPF PRIVATE ${PCL_LIBRARY_DIRS})
 
-# 添加编译器定义
+# Add compiler definition
 TARGET_COMPILE_DEFINITIONS(PPF PRIVATE ${PCL_DEFINITIONS})
 
-# 取消已有的编译器定义
+# Cancel the existing compiler definition.
 SET_TARGET_PROPERTIES(PPF PROPERTIES COMPILE_FLAGS "/UBOOST_ALL_NO_LIB-DBOOST_ALL_NO_LIB")
 
 # 添加依赖库文件
